@@ -1,0 +1,169 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{amsmath}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{filename.png}
+%     \caption{Your figure caption here.}
+%     \label{fig:yourlabel}
+% \end{figure}
+
+\begin{document}
+
+\title{Assignment 2 - Machine Learning \\
+Theoretical Questions}
+\author{Mohammad Hossein Basouli}
+\date{\today}
+\maketitle
+
+\section*{Question 1}
+Because it tries to fit a model from only an specific set of hypothesis functions (which is itself a subset of all polynomial functions) called linear functions. More specifically, 
+it only finds the coefficients associated with linear terms of our features. \\ 
+We could generalize linear regression by including non-linear terms as our features (e.g. Adding $ x^2 $, $ sin(x) $ or even interaction between different features of our data like $x_1x_2$ etc. ) 
+to capture non-linear patterns in our data.
+
+\section*{Question 2}
+When we have multicolinearity it gets hard for the model to identify the exact influence for each of the correlated variables, thus this would affect the interpretability and 
+accuracy of our model. We could identify multicolinearity by \textbf{correlation tests} among different pairs of variables or calculating \textbf{Variance Inflation Factor (VIF)} 
+for each of the variables. Also we can resolve this issue by many different approaches such as:
+\begin{itemize}
+    \item Subset Selection
+    \begin{itemize}
+        \item \textbf{Foward Stepwise Selection}
+        \item \textbf{Backward Stepwise Selection}
+        \item \textbf{Best Subset Selection }
+    \end{itemize}
+    \item Shrinkage Methods
+    \begin{enumerate}
+        \item \textbf{Ridge}
+        \item \textbf{Lasso}
+        \item \textbf{Elastic Net}
+    \end{enumerate}
+    \item Dimention Reduction Methods
+    \begin{enumerate}
+        \item \textbf{Principal Component Analysis (PCA)}
+    \end{enumerate}
+\end{itemize}
+
+\section*{Question 3}
+\begin{itemize}
+    \item \textbf{Equal Treatment of the Features}: When we input features with different scales, our model automatically gives more importances and gets influenced more by the features that 
+    have a larger scale although that feature might not be important than the others. 
+    \item \textbf{Making the Importance of the Features Comparable}: We cannot compare the importance of the features at the end of training our model, because high coefficients don't necessarily
+    mean high importance, thus we must normalize the features in order to be able to compare them.
+    \item \textbf{Accurate and Stable Convergence}: e.g. Gradient decent gives high importance to the features with large numbers, making them change more dramatically than the other features. 
+\end{itemize}
+
+\section*{Question 4}
+Outliers can dramatically increase Mean Squared Error (MSE) even when we have approximately found the optimal solution to our problem. To overcome this issue, we could use \textbf{Huber Loss}
+which essentially uses Mean Abosolute Error (MAE) for errors larger than an specific amount and Mean Squared Error for error which don't exceed that specificed number. Since we don't 
+penalize the error of outliers as much as MSE, this time the model would fit better.
+
+\( 
+L_\delta(a) = 
+\begin{cases} 
+\frac{1}{2} a^2 & \text{if } |a| \leq \delta \\
+\delta \left( |a| - \frac{1}{2} \delta \right) & \text{if } |a| > \delta 
+\end{cases}
+\)
+
+\section*{Question 5}
+\begin{itemize}
+    \item The local-minimums should be quite flat. If the local-minimums are very deep, it's hard for \textbf{Stocastic Gradient Decent (SGD)} to get out of the local-minimum.
+    \item Number of iterations are high enough.
+    \item Learning Rate is controlled.  
+\end{itemize}
+
+\section*{Question 6}
+We might consider a log-scale \textbf{transformation} for the following reasons:
+\begin{itemize}
+    \item Capturing non-linearity in the data. e.g. Assume that the relationship between the depenedent variable $ y $ and $ x $ is as $ y = \log(x) $; if we apply log-scaling to $ xs $ 
+    we would end up with the following relationship $ y = x' \text{ where } \log(x) = x'$.
+    \item Reducing heteroscedasticity.
+    \item Reducing impact of outliers. 
+\end{itemize}
+Also here is a brief explanation about the alternative approaches that we might want to use:
+\begin{itemize}
+    \item \textbf{Square Root}:
+    \begin{itemize}
+        \item Capturing relationships such as $ y = \sqrt{x} $.
+        \item Reduces variance but less aggressive than \textbf{log-scale transformation}
+    \end{itemize}
+    \item \textbf{Inverse}: capturing hyper-bolic relationships
+    \item \textbf{Box-Cox}:
+    \begin{itemize}
+        \item Automatically selecting the appropriate scaling. e.g. if we use $ \lambda = 0 $ it would use \textbf{log-scale transformation}. or use $ \lambda = 0.5 $ to use something like \textbf{Square Root}.
+        \item Formula:
+        \[
+        x^{(\lambda)} =
+        \begin{cases}
+        \displaystyle \frac{x^\lambda - 1}{\lambda}, & \text{if } \lambda \ne 0 \\
+        \log(x), & \text{if } \lambda = 0
+        \end{cases}
+        \]
+    \end{itemize}
+\end{itemize}
+
+\section*{Question 7}
+Both \textbf{Ridge \& Lasso Regression} are regularization methods that prevent the model from overfitting on the training data. They try to penalize the over usage of the 
+variables and constraint them in order to get only a few non-zero variables that are really important in the problem. \textbf{Ridge} adds a quadratic pentalty term to the RSS
+which helps in faster convergence of the non-important variables towards zero (\textbf{Ridge} doesn't force the variables to take the value zero exactly). Whereas \textbf{Lasso} 
+only adds the summation of absolute values of the features as a penalty term, which actually forces non-important features to zero, but we a slower convergence speed.
+
+\(
+\text{Loss}_{\text{Ridge}} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p} w_j^2
+\)
+
+\(
+\text{Loss}_{\text{Lasso}} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p} |w_j|
+\)
+
+\section*{Question 8}
+This state usually occurs when the model is underfitted on the data. Since the complexity of the model is pretty low, it suffers from high bias. Also underfitting usually occurs when complexity of the model is not high enough
+to capture the pattern in the data, thus we must decrease the regularization hyperparameter $ \alpha $ in order to turn the variables that have taken zero values back.
+
+\section*{Question 9}
+\textbf{Locally Weighted Linear Regression (LWR)} is just like the \textbf{Ordinary Global Linear Regression}, expect it tries to fit the parameters for each single data point separately. 
+More specifically, it tries to have a local prediction for each point separately. It adds a weighting function $ w^(i) $ in the \textbf{RSS} which tries to give more importance to the points 
+in the training set which are close to the point that we want to predict outcome for. The formula for \textbf{weighted RSS} in \textbf{LWR} and the weighting function are as follows:
+
+\[
+J(\theta) = \sum_{i=1}^m w^{(i)} \left( y^{(i)} - \theta^T x^{(i)} \right)^2
+\]  
+
+\[
+w^{(i)} = \exp\left( -\frac{(x^{(i)} - x)^2}{2\tau^2} \right)
+\]
+where \( \tau \) controls the bandwidth (i.e., how local the weighting is).
+
+\begin{itemize}
+    \item Benefits: LWR works well on non-linear data and doesn't actually need to know anything about the complexity of the data in advance.
+    \item Limitations: 
+    \begin{enumerate}
+        \item Very slow.
+        \item Takes so much memory.
+        \item Only works if we have some data around the point that we want to predict.
+        \item Very complex.
+    \end{enumerate}
+\end{itemize}
+
+\section*{Question 10}
+\textbf{Elastic Net} tries to combine the advantages of both of the methods \textbf{Ridge \& Lasso Regression}, more specifically, it inherits handling of correlated features by distributing
+the weights among them and shrinking them all out from \textbf{Ridge} and setting some features to zero from \textbf{Lasso}. The formula is as follows:
+
+\[
+\text{Cost} = \text{RSS} + \lambda \left( \alpha \sum_{j=1}^p |\beta_j| + (1-\alpha) \sum_{j=1}^p \beta_j^2 \right)
+\]
+
+
+
+
+
+
+
+
+
+\end{document}
