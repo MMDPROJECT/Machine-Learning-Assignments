@@ -152,84 +152,99 @@ Figure~\ref{fig:fig_3}
 
 \section*{Question 6}
 
-\noindent\textbf{AdaBoost} in Short: AdaBoost first gives equal weights to each of the samples in the dataset, and then tries to fit the best stump to the data. 
-Then it calculates the errors and updates the weights for each of the samples, based on how much error the model has made for that sample. Next, 
-it will calculate how much error the model has made overall to give the model's prediction a weight. And it repeats the process for a certain number of iterations and then sum them up.
+\begin{enumerate}[label=(\alph*)]
+    \item Answer:
+    \noindent\textbf{AdaBoost} in Short: AdaBoost first gives equal weights to each of the samples in the dataset, and then tries to fit the best stump to the data. 
+    Then it calculates the errors and updates the weights for each of the samples, based on how much error the model has made for that sample. Next, 
+    it will calculate how much error the model has made overall to give the model's prediction a weight. And it repeats the process for a certain number of iterations and then sum them up.
 
-\noindent\textbf{Gradient Boosting} in Short: Unlike AdaBoost, in Gradient Boosting, instead of assigning weight to the data points, we will use the negative of the gradient of the loss function to 
-build new models that correct the previous errors, made by the older models. 
+    \noindent\textbf{Gradient Boosting} in Short: Unlike AdaBoost, in Gradient Boosting, instead of assigning weight to the data points, we will use the negative of the gradient of the loss function to 
+    build new models that correct the previous errors, made by the older models. 
 
-\begin{algorithm}
-\caption{AdaBoost Algorithm}
-\begin{algorithmic}[1]
-\REQUIRE Training set $\{(x_1, y_1), \dots, (x_n, y_n)\}$ with $y_i \in \{-1, +1\}$
-\REQUIRE Number of rounds $T$
-\STATE Initialize weights $w_i^{(1)} = \frac{1}{n}, \quad i = 1, \dots, n$
-\FOR{$t = 1$ to $T$}
-    \STATE Train weak learner $h_t(x)$ using distribution $w^{(t)}$
-    \STATE Compute error: $\varepsilon_t = \sum_{i=1}^n w_i^{(t)} \cdot \mathbb{I}(h_t(x_i) \ne y_i)$
-    \STATE Compute model weight: $\alpha_t = \frac{1}{2} \ln\left(\frac{1 - \varepsilon_t}{\varepsilon_t}\right)$
-    \STATE Update weights:
-    \[
-        w_i^{(t+1)} = w_i^{(t)} \cdot \exp(-\alpha_t y_i h_t(x_i)) \quad \text{for } i = 1, \dots, n
-    \]
-    \STATE Normalize weights so that $\sum_{i=1}^n w_i^{(t+1)} = 1$
-\ENDFOR
-\RETURN Final classifier: $H(x) = \text{sign} \left( \sum_{t=1}^T \alpha_t h_t(x) \right)$
-\end{algorithmic}
-\end{algorithm}
+    \begin{algorithm}
+    \caption{AdaBoost Algorithm}
+    \begin{algorithmic}[1]
+    \REQUIRE Training set $\{(x_1, y_1), \dots, (x_n, y_n)\}$ with $y_i \in \{-1, +1\}$
+    \REQUIRE Number of rounds $T$
+    \STATE Initialize weights $w_i^{(1)} = \frac{1}{n}, \quad i = 1, \dots, n$
+    \FOR{$t = 1$ to $T$}
+        \STATE Train weak learner $h_t(x)$ using distribution $w^{(t)}$
+        \STATE Compute error: $\varepsilon_t = \sum_{i=1}^n w_i^{(t)} \cdot \mathbb{I}(h_t(x_i) \ne y_i)$
+        \STATE Compute model weight: $\alpha_t = \frac{1}{2} \ln\left(\frac{1 - \varepsilon_t}{\varepsilon_t}\right)$
+        \STATE Update weights:
+        \[
+            w_i^{(t+1)} = w_i^{(t)} \cdot \exp(-\alpha_t y_i h_t(x_i)) \quad \text{for } i = 1, \dots, n
+        \]
+        \STATE Normalize weights so that $\sum_{i=1}^n w_i^{(t+1)} = 1$
+    \ENDFOR
+    \RETURN Final classifier: $H(x) = \text{sign} \left( \sum_{t=1}^T \alpha_t h_t(x) \right)$
+    \end{algorithmic}
+    \end{algorithm}
 
-\begin{algorithm}
-\caption{Gradient Boosting Algorithm}
-\begin{algorithmic}[1]
-\REQUIRE Training set $\{(x_1, y_1), \dots, (x_n, y_n)\}$
-\REQUIRE Differentiable loss function $L(y, F(x))$
-\REQUIRE Number of iterations $T$
-\STATE Initialize model: $F_0(x) = \arg\min_{\gamma} \sum_{i=1}^n L(y_i, \gamma)$
-\FOR{$t = 1$ to $T$}
-    \STATE Compute pseudo-residuals:
-    \[
-        r_i^{(t)} = -\left[ \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \right]_{F=F_{t-1}} \quad \text{for } i = 1, \dots, n
-    \]
-    \STATE Fit a weak learner $h_t(x)$ to the residuals $r_i^{(t)}$
-    \STATE Compute step size:
-    \[
-        \gamma_t = \arg\min_{\gamma} \sum_{i=1}^n L(y_i, F_{t-1}(x_i) + \gamma h_t(x_i))
-    \]
-    \STATE Update model:
-    \[
-        F_t(x) = F_{t-1}(x) + \gamma_t h_t(x)
-    \]
-\ENDFOR
-\RETURN Final model: $F_T(x)$
-\end{algorithmic}
-\end{algorithm}
+    \begin{algorithm}
+    \caption{Gradient Boosting Algorithm}
+    \begin{algorithmic}[1]
+    \REQUIRE Training set $\{(x_1, y_1), \dots, (x_n, y_n)\}$
+    \REQUIRE Differentiable loss function $L(y, F(x))$
+    \REQUIRE Number of iterations $T$
+    \STATE Initialize model: $F_0(x) = \arg\min_{\gamma} \sum_{i=1}^n L(y_i, \gamma)$
+    \FOR{$t = 1$ to $T$}
+        \STATE Compute pseudo-residuals:
+        \[
+            r_i^{(t)} = -\left[ \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \right]_{F=F_{t-1}} \quad \text{for } i = 1, \dots, n
+        \]
+        \STATE Fit a weak learner $h_t(x)$ to the residuals $r_i^{(t)}$
+        \STATE Compute step size:
+        \[
+            \gamma_t = \arg\min_{\gamma} \sum_{i=1}^n L(y_i, F_{t-1}(x_i) + \gamma h_t(x_i))
+        \]
+        \STATE Update model:
+        \[
+            F_t(x) = F_{t-1}(x) + \gamma_t h_t(x)
+        \]
+    \ENDFOR
+    \RETURN Final model: $F_T(x)$
+    \end{algorithmic}
+    \end{algorithm}
 
-\noindent\textbf{Advantages of the AdaBoost over Decision Trees \& Random Forests}:
-\begin{itemize}
-    \item Lower Bias
-    \item More Flexible (because it has more hyperparameters)
-    \item Higher Accuracy 
-    \item Less Prone to Overfitting than Decision Trees
-\end{itemize} 
+    \noindent\textbf{Advantages of the AdaBoost over Decision Trees \& Random Forests}:
+    \begin{itemize}
+        \item Lower Bias
+        \item More Flexible (because it has more hyperparameters)
+        \item Higher Accuracy 
+        \item Less Prone to Overfitting than Decision Trees
+    \end{itemize} 
 
-\noindent\textbf{Advantages of the GradientBoosting over Decision Trees \& Random Forests}:
-\begin{itemize}
-    \item Lower Bias
-    \item More Flexible (because it has more hyperparameters)
-    \item Higher Accuracy 
-    \item Less Prone to Overfitting than Decision Trees
-\end{itemize} 
+    \noindent\textbf{Advantages of the GradientBoosting over Decision Trees \& Random Forests}:
+    \begin{itemize}
+        \item Lower Bias
+        \item More Flexible (because it has more hyperparameters)
+        \item Higher Accuracy 
+        \item Less Prone to Overfitting than Decision Trees
+    \end{itemize} 
 
-\noindent\textbf{Where to Use AdaBoost over GradientBoosting}:
-\begin{itemize}
-    \item Faster Training
-    \item Data is Not Extremly Noisy
-\end{itemize} 
+    \noindent\textbf{Where to Use AdaBoost over GradientBoosting}:
+    \begin{itemize}
+        \item Faster Training
+        \item Data is Not Extremly Noisy
+    \end{itemize} 
 
-\noindent\textbf{Where to Use GradientBoosting over AdaBoost }:
-\begin{itemize}
-    \item We Want More Flexibility; Like Working with Different Loss Functions
-    \item The Data is Nosiy (it can handle it by regularization)
-\end{itemize} 
+    \noindent\textbf{Where to Use GradientBoosting over AdaBoost }:
+    \begin{itemize}
+        \item We Want More Flexibility; Like Working with Different Loss Functions
+        \item The Data is Nosiy (it can handle it by regularization)
+    \end{itemize} 
+
+    \item Answer:
+    \begin{itemize}
+        \item \textbf{AdaBoost}: Increase the \textit{number of estimators} - Increase the \textit{learning rate}.
+        \item \textbf{GradientBoosting}: Decrease the \textit{number of estimators} - Decrease the \textit{learning rate} - Decrease \textit{max depth} - Increase \textit{min samples leaf} - Increase \textit{min samples split}
+    \end{itemize}
+
+    \item Answer: Some methods such as \textbf{XGBoost}, \textbf{LightGBM} and \textbf{CatBoost} handle categorical features natively, whereas the others, required them to be converted via \textit{OneHotEncoding}, \textit{LabelEncoding}, etc.
+\end{enumerate}
+
+
+
+
 \end{document}
