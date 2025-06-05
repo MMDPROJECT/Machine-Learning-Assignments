@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.24)  6 JUN 2025 01:38
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.24)  6 JUN 2025 01:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -327,12 +327,8 @@ Package hyperref Info: Link coloring OFF on input line 16.
 \@outlinefile=\write3
 \openout3 = `sleep_health_and_student_performance_analysis.out'.
 
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
-(/home/mmdproject/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/home/mmdproject/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
@@ -359,21 +355,11 @@ Overfull \hbox (58.98203pt too wide) in paragraph at lines 148--148
 [3]
 File: ./images/health_description_of_numeric_columns.png Graphic file (type bmp)
 <./images/health_description_of_numeric_columns.png>
-
-
-LaTeX Warning: Reference `fig:Figure_2' on page 4 undefined on input line 206.
-
 File: ./images/health_dpp_comparison_of_columns.png Graphic file (type bmp)
 <./images/health_dpp_comparison_of_columns.png>
 
 
 [4]
-
-LaTeX Warning: Reference `fig:Figure_2' on page 5 undefined on input line 216.
-
-
-LaTeX Warning: Reference `fig:Figure_3' on page 5 undefined on input line 234.
-
 File: ./images/health_distribution_of_sleep_duration_women.png Graphic file (type bmp)
 <./images/health_distribution_of_sleep_duration_women.png>
 
@@ -384,16 +370,55 @@ File: ./images/health_scatter_plot_of_daily_steps_quality_of_sleep.png Graphic f
 
 
 [6]
-
-LaTeX Warning: Reference `fig:Figure_5' on page 7 undefined on input line 273.
-
 File: ./images/health_distribution_of_stress_level_for_occupations.png Graphic file (type bmp)
 <./images/health_distribution_of_stress_level_for_occupations.png>
 
 
 [7]
-
-LaTeX Warning: Reference `fig:Figure_6' on page 8 undefined on input line 294.
-
 File: ./images/health_manova_test_for_bp.png Graphic file (type bmp)
-<./
+<./images/health_manova_test_for_bp.png>
+File: ./images/health_distribution_of_heart_rate_for_people_with_and_without_disorder.png Graphic file (type bmp)
+<./images/health_distribution_of_heart_rate_for_people_with_and_without_disorder.png>
+
+
+[8]
+
+[9]
+
+[10]
+File: ./images/student_distribution_of_numerics.png Graphic file (type bmp)
+<./images/student_distribution_of_numerics.png>
+
+
+[11]
+File: ./images/student_distribution_of_columns.png Graphic file (type bmp)
+<./images/student_distribution_of_columns.png>
+
+Overfull \hbox (25.50546pt too wide) in paragraph at lines 491--493
+\TU/lmr/m/it/10 the following results: Pearson Coefficient: -0.01717144621634847 P-value is: 0.17031732819959972.
+ []
+
+File: ./images/student_MANOVA_for_teacher_quality.png Graphic file (type bmp)
+<./images/student_MANOVA_for_teacher_quality.png>
+
+
+[12]
+
+[13] (./sleep_health_and_student_performance_analysis.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+ ***********
+Package rerunfilecheck Info: File `sleep_health_and_student_performance_analysis.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+ ) 
+Here is how much of TeX's memory you used:
+ 10320 strings out of 475848
+ 163167 string characters out of 5775002
+ 564066 words of memory out of 5000000
+ 33110 multiletter control sequences out of 15000+600000
+ 565637 words of font info for 75 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 72i,6n,79p,611b,826s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on sleep_health_and_student_performance_analysis.pdf (13 pages).
