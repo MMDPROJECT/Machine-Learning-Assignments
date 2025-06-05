@@ -1,4 +1,4 @@
-# 📊 Summary of Machine Learning Assignments
+# Machine Learning Assignments (Spring 2025)
 
 This summary provides an overview of the problem sets in the [Machine-Learning-Assignments](https://github.com/MMDPROJECT/Machine-Learning-Assignments) repository. Each section includes a brief analysis of the question and answer sets.
 
