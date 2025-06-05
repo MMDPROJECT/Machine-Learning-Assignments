@@ -34,14 +34,12 @@ This summary provides an overview of the problem sets in the [Machine-Learning-A
 - **Answer Set**: [Notebook](pset1/sleep_health_and_student_performance_analysis.ipynb) | [PDF](pset1/sleep_health_and_student_performance_analysis.pdf)  
 
 ### 📝 Summary  
-This assignment explores the relationship between sleep health metrics and student academic performance. The analysis likely includes:
+This assignment explores the relationship between sleep health metrics and student academic performance. 
 
 ### Techniques Applied
 - Exploratory Data Analysis
 - Data Preprocessing
 - Visualization
-
-Key techniques may include regression analysis, hypothesis testing, and feature importance evaluation.
 
 ---
 
@@ -51,14 +49,12 @@ Key techniques may include regression analysis, hypothesis testing, and feature 
 - **Answer Set**: [Notebook](pset2/ride_sharing_analysis.ipynb) | [PDF](pset2/ride_sharing_analysis.pdf)  
 
 ### 📝 Summary  
-This problem set focuses on analyzing ride-sharing service data, potentially covering:
+This problem set focuses on analyzing ride-sharing service data.
 
 ### Techniques Applied
 - Regression (Linear, Polynomial, Regularization, Hyperparamter Tuning, etc.)
 - Exploratory Data Analysis
 - Data Preprocessing
-
-The solution likely employs time series analysis, clustering techniques, and possibly predictive modeling for demand forecasting.
 
 ---
 
@@ -68,14 +64,12 @@ The solution likely employs time series analysis, clustering techniques, and pos
 - **Answer Set**: [Notebook](pset3/student_placement_analysis.ipynb) | [PDF](pset3/student_placement_analysis.pdf)  
 
 ### 📝 Summary  
-This assignment examines factors influencing student placement outcomes, probably including:
+This assignment examines factors influencing student placement outcomes.
 
 ### Techniques Applied
 - Classification (LDA, Naive Bayes)
 - Exploratory Data Analysis
 - Data Preprocessing
-
-The solution likely involves classification algorithms, feature importance analysis, and possibly natural language processing for resume/CV analysis.
 
 ---
 
