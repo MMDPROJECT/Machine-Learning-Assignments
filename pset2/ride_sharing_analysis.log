@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.24)  7 MAY 2025 15:39
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.24)  6 JUN 2025 01:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/mmdproject/SBU/Term_6/Machine Learning/pset2/main"
-(/home/mmdproject/SBU/Term_6/Machine Learning/pset2/main.tex
+**"/home/mmdproject/SBU/Term_6/Machine Learning/Problem Sets/pset2/ride_sharing_analysis"
+(/home/mmdproject/SBU/Term_6/Machine Learning/Problem Sets/pset2/ride_sharing_analysis.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (/home/mmdproject/.TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -160,8 +160,8 @@ File: l3backend-xetex.def 2024-05-08 L3 backend support: XeTeX
 \l__pdf_internal_box=\box55
 \g__pdf_backend_annotation_int=\count282
 \g__pdf_backend_link_int=\count283
-) (./main.aux)
-\openout1 = `main.aux'.
+) (./ride_sharing_analysis.aux)
+\openout1 = `ride_sharing_analysis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
@@ -184,9 +184,9 @@ LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 Package hyperref Info: Link coloring OFF on input line 13.
- (./main.out) (./main.out)
+ (./ride_sharing_analysis.out) (./ride_sharing_analysis.out)
 \@outlinefile=\write3
-\openout3 = `main.out'.
+\openout3 = `ride_sharing_analysis.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 20.
@@ -245,21 +245,21 @@ File: ./images/residual_of_enhanced.png Graphic file (type bmp)
 <./images/residual_of_enhanced.png>
 
 
-[7] (./main.aux)
+[7] (./ride_sharing_analysis.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-Package rerunfilecheck Info: File `main.out' has not changed.
+Package rerunfilecheck Info: File `ride_sharing_analysis.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
  8155 strings out of 475848
- 128182 string characters out of 5775002
- 524057 words of memory out of 5000000
+ 128544 string characters out of 5775002
+ 524142 words of memory out of 5000000
  31016 multiletter control sequences out of 15000+600000
  562902 words of font info for 56 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,10n,79p,1028b,347s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,10n,79p,1058b,347s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (7 pages).
+Output written on ride_sharing_analysis.pdf (7 pages).
