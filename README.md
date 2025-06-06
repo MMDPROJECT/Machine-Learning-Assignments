@@ -76,13 +76,3 @@ This assignment examines factors influencing student placement outcomes.
 ## 📁 Problem Set 4
 
 No deliverables available for this problem set. Placeholder for future assignments.
-
----
-
-### General Notes:
-- All problem sets include both Jupyter notebook implementations and PDF exports
-- Each set has a corresponding PDF document with problem statements/instructions
-- The analyses appear to cover fundamental machine learning concepts applied to real-world datasets
-- Techniques progress from basic statistical analysis to more advanced predictive modeling
-
-Would you like me to make any adjustments to this structure or content?
