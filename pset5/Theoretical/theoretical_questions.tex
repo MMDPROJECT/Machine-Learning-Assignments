@@ -1,0 +1,249 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{filename.png}
+%     \caption{Your figure caption here.}
+%     \label{fig:yourlabel}
+% \end{figure}
+
+\begin{document}
+
+\title{Assignment 5 - Machine Learning \\
+Theoretical Questions}
+\author{Mohammad Hossein Basouli}
+\date{\today}
+\maketitle
+
+\section*{Question 1}
+\noindent\textbf{Limitations:}
+\begin{itemize}
+    \item Assumes spherical and convex shapes for each cluster.
+    \item Requires specification of number of clusters.
+    \item Gives poor results when initialized badly.
+\end{itemize}
+
+\noindent\textbf{Initialization Methods:}
+\begin{itemize}
+    \item \textbf{Random:} Randomly samples \textit{K} distinct data points as centroids.
+    \item \textbf{K-Means++:} Selects the first centroid randomly, and then each subsequent centroid is chosen from the remaining points with a probability proportional to its squared distance from the nearest existing centroid.
+\end{itemize}
+
+\noindent\textbf{Can K-Means be used with categorical data?}
+Not directly, but it's possible if we encode the categorical features using a feature encoding method such as \textit{Label Encoding}.
+
+\section*{Question 2}
+It could be due to setting an small $\epsilon$.
+
+\section*{Question 3}
+\begin{enumerate}[label=\alph*)]
+  \item Because it doesn't assign a given data point to a certain cluster, instead it assign the data point to each of the clusters, with a probability, but hard clustering methods do the opposite.
+  \item Yes. Below is the explanation for anomaly detection using each of the methods:
+  \begin{itemize}
+    \item \textbf{DBSCAN:} At the end of alogithm's execution, the points that have not been assigned to any clusters, are anomalies.
+    \item \textbf{GMM:} The data points with a very low likelihood of occurance, after running some iterations of the algorithm, are considered as anomalies.
+  \end{itemize}
+\end{enumerate}
+
+\section*{Question 4}
+\begin{enumerate}[label=\alph*)]
+  \item Their difference is written below. Also we can't use \textbf{Silhouette Score} for a dataset which includes only one cluster, since one of parameters in the computation is the average distance from a given point and all other points of the nearest neighbor cluster.  
+  \begin{itemize}
+    \item \textbf{Silhouette Score:} Computationally inefficient - point-wise calculation of score - higher value is better.
+    \item \textbf{Davis-Bouldin Score:} Computationally efficient - cluster-wise calculation of score - lower value is better.
+  \end{itemize}
+
+  \item When having well-separated clusters, the silhouette score will be close to 1, and as the clusters tend to overlap with each other, the score decreases to -1. 
+\end{enumerate}
+
+\section*{Question 5}
+\begin{enumerate}[label=\alph*)]
+    \item 
+    \begin{itemize}
+        \item t-SNE is more computationally expensive than PCA.
+        \item t-SNE can capture non-linear patterns but PCA can only capture linear patterns.
+        \item t-SNE is primarily used for visualization in 2D or 3D space but PCA could also be used for feature reduction.
+    \end{itemize}
+
+    \item Yes that's possible. e.g. we can first apply PCA for feature reduction and then t-SNE for visualization.
+    \item \begin{itemize}
+        \item Dynamic Time Warping (DTW) is the most appropriate distance metric for clustering time series data because it can compare sequences that vary in speed or alignment.
+        \item DTW works by non-linearly warping the time axis of one sequence to optimally align it with another, minimizing the cumulative distance between their matched points.
+        \item Unlike Euclidean distance, which assumes fixed one-to-one correspondence between time steps, DTW accounts for time shifts and distortions, making it more robust for real-world temporal data.
+        \item As a result, DTW is well-suited for clustering time series where similar patterns may be temporally misaligned but structurally similar.
+    \end{itemize} 
+\end{enumerate}
+
+\section*{Question 6}
+\[
+X = 
+\begin{bmatrix}
+90 & 60 & 90 \\
+90 & 90 & 30 \\
+60 & 60 & 60 \\
+\end{bmatrix}
+\]
+
+\subsection*{Step 1: Center the Data}
+
+Compute the mean of each column:
+
+\[
+\mu = \frac{1}{3} \sum X = 
+\begin{bmatrix}
+\frac{90 + 90 + 60}{3} \\
+\frac{60 + 90 + 60}{3} \\
+\frac{90 + 30 + 60}{3}
+\end{bmatrix}
+=
+\begin{bmatrix}
+80 \\
+70 \\
+60
+\end{bmatrix}
+\]
+
+Subtract the mean vector from each row:
+
+\[
+X_{\text{centered}} = X - \mu^T = 
+\begin{bmatrix}
+90 - 80 & 60 - 70 & 90 - 60 \\
+90 - 80 & 90 - 70 & 30 - 60 \\
+60 - 80 & 60 - 70 & 60 - 60 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+10 & -10 & 30 \\
+10 & 20 & -30 \\
+-20 & -10 & 0 \\
+\end{bmatrix}
+\]
+
+\subsection*{Step 2: Compute the Covariance Matrix}
+
+\[
+\Sigma = \frac{1}{n-1} X_{\text{centered}}^T X_{\text{centered}}
+\]
+
+\[
+\Sigma = \frac{1}{2}
+\begin{bmatrix}
+10 & 10 & -20 \\
+-10 & 20 & -10 \\
+30 & -30 & 0 \\
+\end{bmatrix}^T
+\begin{bmatrix}
+10 & 10 & -20 \\
+-10 & 20 & -10 \\
+30 & -30 & 0 \\
+\end{bmatrix}
+= \frac{1}{2}
+\begin{bmatrix}
+1000 & -500 & 600 \\
+-500 & 600 & -900 \\
+600 & -900 & 1800 \\
+\end{bmatrix}
+\]
+
+\[
+\Sigma = 
+\begin{bmatrix}
+500 & -250 & 300 \\
+-250 & 300 & -450 \\
+300 & -450 & 900 \\
+\end{bmatrix}
+\]
+
+\subsection*{Step 3: Find Eigenvalues and Eigenvectors}
+
+Solve the characteristic equation:
+
+\[
+\det(\Sigma - \lambda I) = 0
+\]
+
+This yields eigenvalues:
+\[
+\lambda_1 = 1205.47,\quad \lambda_2 = 336.20,\quad \lambda_3 = 158.32
+\]
+
+Corresponding eigenvectors (normalized):
+
+\[
+v_1 =
+\begin{bmatrix}
+0.35 \\
+-0.49 \\
+0.80 \\
+\end{bmatrix},
+\quad
+v_2 =
+\begin{bmatrix}
+0.84 \\
+0.54 \\
+-0.05 \\
+\end{bmatrix}
+\]
+
+\subsection*{Step 4: Project the Data onto the First Two Principal Components}
+
+Let \( W = [v_1 \; v_2] \). Then the reduced data:
+
+\[
+X_{\text{reduced}} = X_{\text{centered}} \cdot W
+\]
+
+\[
+X_{\text{reduced}} =
+\begin{bmatrix}
+10 & -10 & 30 \\
+10 & 20 & -30 \\
+-20 & -10 & 0 \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.35 & 0.84 \\
+-0.49 & 0.54 \\
+0.80 & -0.05 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+30.5 & 0.6 \\
+-30.7 & 14.6 \\
+0.2 & -15.2 \\
+\end{bmatrix}
+\]
+
+\subsection*{Conclusion}
+
+The data projected into the 2D space defined by the first two principal components is:
+
+\[
+\begin{bmatrix}
+30.5 & 0.6 \\
+-30.7 & 14.6 \\
+0.2 & -15.2 \\
+\end{bmatrix}
+\]
+
+This concludes the PCA procedure.
+
+\section*{Question 7}
+Clustering may benefit \textbf{Linear Regression} in two ways:
+\begin{itemize}
+    \item Detection of anomalies and removing them before applying \textbf{Linear Regression}.
+    \item Applying clustering in order to divide the data into multiple group and applying \textbf{Linear Regression} on each separately.
+\end{itemize}
+
+\section*{Question 8}
+This shows that each data point is at an equal distance to all of its other neighbors and all are within a single cluster.
+\end{document}
